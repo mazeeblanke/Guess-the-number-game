@@ -17,7 +17,6 @@
 
   // Variable for store the correct random number 
   let correctNumber;
-  let numberGuess;
 
   window.onload = function() {
     document.getElementById("number-submit").addEventListener("click", playGame);
@@ -30,16 +29,10 @@
    */
   function playGame(){
     // *CODE GOES BELOW HERE *
-    numberGuess = document.getElementById('number-guess').value;
+    let numberGuess = document.getElementById('number-guess').value;
     saveGuessHistory(numberGuess)
     
-    if (numberGuess == correctNumber) {
-      showYouWon()
-    } else if (numberGuess < correctNumber) {
-      showNumberBelow()
-    } else if (numberGuess > correctNumber) {
-      showNumberAbove()
-    }
+    displayResult(numberGuess)
 
     displayHistory()
     document.getElementById('number-guess').value = ''
@@ -51,6 +44,15 @@
    * HINT: Use if, else if, else statement 
    */
   // *CODE GOES BELOW HERE *
+  function displayResult(numberGuess) {
+    if (numberGuess == correctNumber) {
+      showYouWon()
+    } else if (numberGuess < correctNumber) {
+      showNumberBelow()
+    } else if (numberGuess > correctNumber) {
+      showNumberAbove()
+    }
+  }
 
 
 
@@ -101,12 +103,12 @@
    * HINT: use while loop and string concatentation to create a list of guesses
    */
   function displayHistory() {
-    let index = 0; // TODO
+    let index = guesses.length - 1; // TODO
     let list = "<ul class='list-group'>";
     // *CODE GOES BELOW HERE *
-    while (index < guesses.length) {
-      list += "<li class='list-group-item'>" + guesses[index] +"</li>";
-      index++;
+    while (index >= 0) {
+      list += "<li class='list-group-item'> You guessed " + guesses[index] +"</li>";
+      index--;
     }
     list += '</ul>';
     document.getElementById("history").innerHTML = list;
