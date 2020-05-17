@@ -63,6 +63,7 @@
     correctNumber = getRandomNumber()
     guesses = []
     resetResultContent()
+    displayHistory()
   }
 
   /**
